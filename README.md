@@ -14,10 +14,18 @@ By the way the news folder is located inside the vagrant's folder.
    <details>
       <summary>FSND-Virtual-Machine</summary>
            <details>
+               <details>
            <summary>vagrant</summary>
+                   </details>
+               <details>
               <summary>.vagrant</summary>
+                   </details>
+               <details>
               <p>catalog</p>
+                   </details>
+               <details>
               <p>forum</p>
+                   </details>
        <details>
            <summary>news</summary>
            <p>newsdb.py</p>
