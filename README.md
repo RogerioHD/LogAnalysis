@@ -22,8 +22,7 @@ By the way the news folder is located inside the vagrant's folder.
            <summary>news</summary>
            <p>newsdb.py</p>
         </details>                   
-            <p>forum</p>
-            </details>            
+           </details>            
     </details>
 
   
