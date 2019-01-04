@@ -11,14 +11,6 @@ For each one of these question there is a SQL query implemented within the pytho
 ## How is it set?
 The python file **newsdb.py** is located inside a folder named news.
 By the way the news folder is located inside the vagrant's folder.
-* FSND-Virtual-Machine
-    * vagrant
-        * .vagrant
-        * news
-          * newsdb.py
-        * forum
-        * catalog
-        
    <details>
       <summary>FSND-Virtual-Machine</summary>
            <p>vagrant</p>
