@@ -15,7 +15,7 @@ By the way the news folder is located inside the vagrant's folder.
       <summary>FSND-Virtual-Machine</summary>
            <details>
            <summary>vagrant</summary>
-              <p>.vagrant</p>
+              <summary>.vagrant</summary>
               <p>catalog</p>
               <p>forum</p>
        <details>
