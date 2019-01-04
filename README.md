@@ -1,6 +1,7 @@
 # LogAnalysis
 ## About
 This python program named **newsdb.py** generates reports from a database.
+It uses the psycopg2 module.
 The database contains information concerning authors and their articles 
 and how many views each article have gotten.
 ## 3 Questions, 3 Answers
@@ -9,6 +10,10 @@ and how many views each article have gotten.
 3. On what days more than 1% of requests resulted in errors?
 For each one of these question there is a SQL query implemented within the python program.
 ## How is it set?
+At first you need to have installed on your computer the VirtualBox and the Vagrant.
+After that you'll need to download the virtual machine FSND-Virtual-Machine
+provided by Udacity team.
+### Python File
 The python file **newsdb.py** is located inside a folder named ***news***.
 By the way the ***news*** folder is located inside the vagrant's folder.
    <details>
@@ -19,7 +24,7 @@ By the way the ***news*** folder is located inside the vagrant's folder.
               <summary>* catalog</summary>                   
               <summary>* forum</summary>                  
        <details>
-           <summary>***news***</summary>
+           <summary>news</summary>
            <p>newsdb.py</p>
         </details>
          </details>
