@@ -1,7 +1,7 @@
 # LogAnalysis
 ## About
 This python program named **newsdb.py** generates reports from a database.
-It uses the psycopg2 module.
+It uses the `psycopg2` module.
 The database contains information concerning authors and their articles 
 and how many views each article have gotten.
 ## 3 Questions, 3 Answers
