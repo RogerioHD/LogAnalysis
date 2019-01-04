@@ -29,6 +29,7 @@ By the way the ***news*** folder is located inside the vagrant's folder. Here's 
         </details>
          </details>
     </details>
+    
 ### Running the program
 After the initial set up you should be able to log into your virtual machine.
 via `vagrant up` and them `vagrant ssh`
