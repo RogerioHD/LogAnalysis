@@ -9,8 +9,8 @@ and how many views each article have gotten.
 3. On what days more than 1% of requests resulted in errors?
 For each one of these question there is a SQL query implemented within the python program.
 ## How is it set?
-The python file **newsdb.py** is located inside a folder named news.
-By the way the news folder is located inside the vagrant's folder.
+The python file **newsdb.py** is located inside a folder named ***news***.
+By the way the ***news*** folder is located inside the vagrant's folder.
    <details>
       <summary>FSND-Virtual-Machine</summary> 
       <details>
@@ -19,7 +19,7 @@ By the way the news folder is located inside the vagrant's folder.
               <summary>* catalog</summary>                   
               <summary>* forum</summary>                  
        <details>
-           <summary>news</summary>
+           <summary>***news***</summary>
            <p>newsdb.py</p>
         </details>
          </details>
