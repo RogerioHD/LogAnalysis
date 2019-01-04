@@ -31,8 +31,8 @@ By the way the ***news*** folder is located inside the vagrant's folder. Here's 
     </details>
     
 ### Running the program
-After the initial set up you should be able to log into your virtual machine.
-via `vagrant up` and them `vagrant ssh`
+After the initial set up you should be able to login into your virtual machine
+using `vagrant up` command and them `vagrant ssh` command.
 If everthing is ok the output of your shell would seems like:
 `vagrant@vagrant:/vagrant/news$`
 Just wrtite `python newsdb.py` and you will get the reports!
