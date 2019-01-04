@@ -15,6 +15,7 @@ By the way the news folder is located inside the vagrant's folder.
     * vagrant
         * .vagrant
         * news
+          * newsdb.py
         * forum
         * catalog
 
