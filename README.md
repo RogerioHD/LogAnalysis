@@ -21,10 +21,10 @@ By the way the news folder is located inside the vagrant's folder.
               <summary>.vagrant</summary>
                    </details>
                <details>
-              <p>catalog</p>
+              <summary>catalog</summary>
                    </details>
                <details>
-              <p>forum</p>
+              <summary>forum</summary>
                    </details>
        <details>
            <summary>news</summary>
