@@ -10,12 +10,12 @@ and how many views each article have gotten.
 3. On what days more than 1% of requests resulted in errors?
 For each one of these question there is a SQL query implemented within the python program.
 ## How is it set?
-At first you need to have installed on your computer the VirtualBox and the Vagrant.
+One should notice that at first you need to have installed on your computer the VirtualBox and the Vagrant.
 After that you'll need to download the virtual machine FSND-Virtual-Machine
-provided by Udacity team.
+provided by Udacity team on its _NanoDegree FullStack program_.
 ### Python File
 The python file **newsdb.py** is located inside a folder named ***news***.
-By the way the ***news*** folder is located inside the vagrant's folder.
+By the way the ***news*** folder is located inside the vagrant's folder. Here's the structure:
    <details>
       <summary>FSND-Virtual-Machine</summary> 
       <details>
