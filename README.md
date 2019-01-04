@@ -14,16 +14,16 @@ By the way the news folder is located inside the vagrant's folder.
    <details>
       <summary>FSND-Virtual-Machine</summary>
            <details>
-               <details>
+                    <details>
            <summary>vagrant</summary>
                    </details>
-               <details>
+                  <details>
               <summary>.vagrant</summary>
                    </details>
-               <details>
+                  <details>
               <summary>catalog</summary>
                    </details>
-               <details>
+                  <details>
               <summary>forum</summary>
                    </details>
        <details>
