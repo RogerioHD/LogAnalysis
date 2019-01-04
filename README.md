@@ -13,13 +13,16 @@ The python file **newsdb.py** is located inside a folder named news.
 By the way the news folder is located inside the vagrant's folder.
    <details>
       <summary>FSND-Virtual-Machine</summary>
-           <p>vagrant</p>
-           <p>.vagrant</p>
+           <details>
+           <summary>vagrant</summary>
+              <p>.vagrant</p>
        <details>
            <summary>news</summary>
            <p>newsdb.py</p>
         </details>                   
             <p>forum</p>
+            </details> 
+           
     </details>
 
   
