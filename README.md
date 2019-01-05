@@ -10,6 +10,8 @@ and how many views each article have gotten.
 3. On what days more than 1% of requests resulted in errors?
 For each one of these question there is a SQL query implemented within the python program.
 ## How is it set?
+It is important to emphasize that you should use a terminal to run the enviroment.
+It could be **Git Bash** on Windows or regular terminals on Mac or Linux.
 1. Step One: Get / install Python version 2 or 3. 
 Go to https://www.python.org/downloads/ and download Python.
 Follow the installation process.
@@ -48,5 +50,8 @@ using `vagrant up` command and them `vagrant ssh` command.
 If everthing is ok the output of your shell would seems like:
 `vagrant@vagrant:/vagrant/news$`
 Just wrtite `python newsdb.py` and you will get the reports!
+### Accessing the Database
+To check for other queries of your interest, just certify that your are at `vagrant@vagrant:/vagrant/news$`
+and than run psql command.
 
   
