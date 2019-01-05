@@ -4,6 +4,13 @@ This python program named **newsdb.py** generates reports from a database.
 It uses the `psycopg2` module.
 The database contains information concerning authors and their articles 
 and how many views each article have gotten.
+The database has 3 tables: authors, articles and log table.
+The log table includes the following columns: id, time, status, ip, slug.
+The articles table
+The authors table includes: name, id
+Por favor, faça uma breve descrição do banco de dados e das tabelas.
+Por exemplo, a tabela de log inclui uma coluna status que indica o código de
+status HTTP que o site de notícias envia para o navegador do usuário ('200 OK' ou '404 NOT FOUND').
 ## 3 Questions, 3 Answers
 1. What are the three most popular articles of all time?
 2. Who are the authors of most popular articles of all time?
