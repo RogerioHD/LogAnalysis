@@ -10,10 +10,12 @@ and how many views each article have gotten.
 3. On what days more than 1% of requests resulted in errors?
 For each one of these question there is a SQL query implemented within the python program.
 ## How is it set?
-1. Step One How to get / install Python version 2 or 3 
+1. Step One: Get / install Python version 2 or 3. 
 Go to https://www.python.org/downloads/ and download Python.
-Follow the installation process
-2. Step Two How to get / install Python version 2 or 3 
+Follow the installation process.
+2. Step Two: Get / install VirtualBox.
+Here is recommended that you choose a virtual machine.
+To download a virtual machine go to https://www.virtualbox.org/ ans install VirtualBox
 One should notice that at first you need to have installed on your computer the VirtualBox and the Vagrant.
 After that you'll need to download the virtual machine FSND-Virtual-Machine
 provided by Udacity team on its _NanoDegree FullStack program_.
