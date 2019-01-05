@@ -26,7 +26,13 @@ You should have a virtual machine with Postgres intalled on it and the files rel
 Here's a link to download the complete enviroment https://github.com/udacity/fullstack-nanodegree-vm.
 This machine is part of _NanoDegree FullStack program_.
 Unzip or place the virtual machine folder in a directory of your computer.
-
+5. Step Five: Import the database.
+To import the Database to your enviroment you should first be able to login into your virtual machine
+using `vagrant up` command and them `vagrant ssh` command.
+If everthing is ok the output of your shell would seems like:
+`vagrant@vagrant:/vagrant/news$`
+Than run the following command on Shell `psql -d news -f newsdata.sql`.
+It will import the database called news wich contains 3 tables (articles, authors and log).
 ### Python File
 The python file **newsdb.py** is located inside a folder named ***news***.
 By the way the ***news*** folder is located inside the vagrant's folder. Here's the structure:
