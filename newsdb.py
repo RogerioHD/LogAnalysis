@@ -1,100 +1,174 @@
-#!/usr/bin/env python3
+# $ python newsdb.py
 # encoding: utf-8
 # Database code for the DB news -Log Analysis Assignment.
 
 import psycopg2
 
 DBNAME = "news"
-# FIRST QUESTION
-try:
-    db = psycopg2.connect(database=DBNAME)
-except psycopg2.Error as e:
-    print ("Unable to connect to the database")
-c = db.cursor()
-c.execute(
-    "select title, count(articles.id) as num from log left join"
-    "articles on substring(path,10,88)=slug inner join "
-    "authors on authors.id=articles.author group by title,"
-    "status  having status='200 OK' order by num desc limit 3")
-posts = c.fetchall()
-# And let's loop over it too:
-print("\n1. Quais são os três artigos mais populares de todos os tempos?")
-print("Titles and views:")
-for post in posts:
-    print("  {}---------{} views".format(post[0], post[1]))
-db.close()
 
-# SECOND QUESTION
-try:
-    db = psycopg2.connect(database=DBNAME)
-except psycopg2.Error as e:
-    print ("Unable to connect to the database")
-c = db.cursor()
-c.execute(
-    "select authors.name, count(articles.id) as num from log left join"
-    " articles on substring(path,10,88)=slug inner "
-    "join authors on authors.id=articles.author group by status,authors.name"
-    "having status='200 OK' order by num desc")
-posts = c.fetchall()
-# And let's loop over it too:
-print("\n2. Quem são os autores de artigos mais populares de todos os tempos?")
-print("Author's name and views:")
-for post in posts:
-    print("  {} --------- {} views".format(post[0], post[1]))
-db.close()
+def connect(database_name):
+    """
+       Connect to the PostgreSQL database.  Returns a database connection.
+       Use this like so:
+       db, cursor = connect(DBNAME)
+    """
+    try:
+        db = psycopg2.connect("dbname={}".format(database_name))
+        cursor = db.cursor()
+        return db, cursor
+        """
+                db, cursor : is a tuple. 
+                The first element (db) is a connection to the database.
+                The second element (cursor) is a cursor for the database.
+        """
+    except psycopg2.Error as err:
+        print "Unable to connect to database"
+        print err
+        sys.exit(1)      # The easier method - exit the program
+
+# FIRST QUESTION QUERY
+
+query_1 = """
+SELECT title,
+       count(articles.id) AS num
+FROM log
+LEFT JOIN articles ON substring(PATH, 10, 88)=slug
+INNER JOIN authors ON authors.id=articles.author
+GROUP BY title,
+         status
+HAVING status='200 OK'
+ORDER BY num DESC
+LIMIT 3;
+"""
+
+# SECOND QUESTION QUERY
+
+query_2 = """
+SELECT authors.name,
+       count(articles.id) AS num
+FROM log
+LEFT JOIN articles ON substring(PATH, 10, 88)=slug INNER "
+JOIN authors ON authors.id=articles.author
+GROUP BY status,
+         authors.name
+HAVING status='200 OK'
+ORDER BY num DESC;
+"""
+
+# THIRD QUESTION GENERAL QUERY
+
+query_3 = """
+SELECT days,
+       success,
+       failures,
+       to_char(cast(failures AS decimal)/(success+failures)*100, '0.99%') AS errors
+FROM
+  (SELECT to_char(s.time, 'DD Mon YYYY') AS days,
+          s.status,
+          count(s.id) AS success
+   FROM log AS s
+   GROUP BY days,
+            s.status) AS s,
+
+  (SELECT to_char(f.time, 'DD Mon YYYY' ) AS dayf,
+          f.status,
+          count(f.id) AS failures
+   FROM log AS f
+   GROUP BY dayf,
+            f.status) AS f
+WHERE days=dayf
+  AND success>failures;
+"""
+
+# THIRD QUESTION SPECIFIC QUERY
 
 
-# THIRD QUESTION
+query_3_plus = """
+SELECT days,
+       success,
+       failures,
+       to_char(cast(failures AS decimal)/(success+failures)*100, '0.99%') AS errors
+FROM
+  (SELECT to_char(s.time, 'DD Mon YYYY') AS days,
+          s.status,
+          count(s.id) AS success
+   FROM log AS s
+   GROUP BY days,
+            s.status) AS s,
+
+  (SELECT to_char(f.time, 'DD Mon YYYY') AS dayf,
+          f.status,
+          count(f.id) AS failures
+   FROM log AS f
+   GROUP BY dayf,
+            f.status) AS f
+WHERE days=dayf
+  AND success>failures
+  AND cast(failures AS decimal)/(success+failures)>0.01
+"""
 
 
-try:
-    db = psycopg2.connect(database=DBNAME)
-except psycopg2.Error as e:
-    print ("Unable to connect to the database")
-c = db.cursor()
-c.execute(
-    "select days, success, failures,"
-    "to_char(cast(failures as decimal)/(success+failures)*100,'0.99%') as "
-    "errors from (select to_char(s.time,'DD Mon YYYY')"
-    "as days,s.status,count(s.id) as success from log "
-    "as s  group by days,s.status) as s,(select to_char(f.time,'DD Mon YYYY'"
-    ") as dayf,f.status,count(f.id) "
-    "as failures from log as f group by dayf, f.status) as f where"
-    "days=dayf and success>failures")
-posts = c.fetchall()
-# And let's loop over it too:
-print("\n3. Em quais dias mais de 1% das requisições resultaram em erros?")
-print("Date and status views:")
-print("     DATE       VIEWS   ERRORS          %ERRORS")
-for post in posts:
-    # colorize only the rows wich percentage of errors is greater than 1%
-    if float(post[3][1:3]) > 1:
-        print('\033[0;32;41m {}     {}    {}-----------'
-              '{}\033[m'.format(post[0], post[1], post[2], post[3]))
-    else:
-        print(" {}     {}    {}-----------"
-              "{}".format(post[0], post[1], post[2], post[3]))
-db.close()
+def answer1():
+   """Answer the first question ..."""
+    print("Question 1: What are the most popular three articles of all time?\n")
+    c.execute(query_1)
+    posts = c.fetchall()
+    print("Titles and views:")
+    # And let's loop over it too:
+    for post in posts:
+        print("  {}---------{} views".format(post[0], post[1]))
+     
 
+def answer2():
+   """Answer second question ..."""
+    print("Question 2: Who are the most popular article authors of all time?\n")
+    c.execute(query_2)
+    posts = c.fetchall()
+    print("Author's name and views:")
+    # And let's loop over it too:
+    for post in posts:
+        print("  {} --------- {} views".format(post[0], post[1]))
+   
 
-try:
-    db = psycopg2.connect(database=DBNAME)
-except psycopg2.Error as e:
-    print ("Unable to connect to the database")
-c = db.cursor()
-c.execute(
-    "select days, success, failures,to_char(cast(failures as"
-    "decimal)/(success+failures)*100,'0.99%') as errors from "
-    "(select to_char(s.time,'DD Mon YYYY') as days,s.status,count(s.id)"
-    "as success from log as s  group "
-    "by days,s.status) as s,(select to_char(f.time,'DD Mon YYYY')"
-    "as dayf,f.status,count(f.id) "
-    "as failures from log as f group by dayf,f.status) as f where"
-    "days=dayf and success>failures "
-    "and cast(failures as decimal)/(success+failures)>0.01;")
-posts = c.fetchall()
-# And let's loop over it too:
-print("\n****Dia(s) com falha maior que 1%:")
-for post in posts:
-    print('\033[0;32;41m {}---------{} Erros \033[m'.format(post[0], post[3]))
-db.close()
+def answer3():
+    """Answer the third first question ..."""
+    print("Question 3: On which days more than 1% of requests resulted in errors?\n")
+    c.execute(query_3)
+    posts = c.fetchall()      
+    print("Date and status views:")
+    print("     DATE       VIEWS   ERRORS          %ERRORS")
+    for post in posts:
+        # colorize only the rows wich percentage of errors is greater than 1%
+        if float(post[3][1:3]) > 1:
+            print('\033[0;32;41m {}     {}    {}-----------'
+                  '{}\033[m'.format(post[0], post[1], post[2], post[3]))
+        else:
+            print(" {}     {}    {}-----------"
+                  "{}".format(post[0], post[1], post[2], post[3]))   
+        
+  
+def answer3Plus():
+    c.execute(query_3)
+    posts = c.fetchall()
+    print("\n****Day (s) with failure rate greater than 1%:")
+    # And let's loop over it too:
+    for post in posts:
+        print('\033[0;32;41m {}---------{} Erros \033[m'.format(post[0], post[3]))
+
+       
+ def run():
+    """Running report ..."""
+    print("Running reporting tools...\n")
+    answer1()
+    print("\n")
+
+    answer2()
+    print("\n")
+
+    answer3()
+    print("\n")
+    
+    answer3Plus()
+    print("\n")
+
+    db.close()
