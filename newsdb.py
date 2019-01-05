@@ -6,6 +6,7 @@ import psycopg2
 
 DBNAME = "news"
 
+
 def connect(database_name):
     """
        Connect to the PostgreSQL database.  Returns a database connection.
@@ -17,7 +18,7 @@ def connect(database_name):
         cursor = db.cursor()
         return db, cursor
         """
-                db, cursor : is a tuple. 
+                db, cursor : is a tuple.
                 The first element (db) is a connection to the database.
                 The second element (cursor) is a cursor for the database.
         """
@@ -61,7 +62,8 @@ query_3 = """
 SELECT days,
        success,
        failures,
-       to_char(cast(failures AS decimal)/(success+failures)*100, '0.99%') AS errors
+       to_char(cast(failures AS decimal)/(success+failures)*100, '0.99%')
+       AS errors
 FROM
   (SELECT to_char(s.time, 'DD Mon YYYY') AS days,
           s.status,
@@ -69,7 +71,6 @@ FROM
    FROM log AS s
    GROUP BY days,
             s.status) AS s,
-
   (SELECT to_char(f.time, 'DD Mon YYYY' ) AS dayf,
           f.status,
           count(f.id) AS failures
@@ -87,7 +88,8 @@ query_3_plus = """
 SELECT days,
        success,
        failures,
-       to_char(cast(failures AS decimal)/(success+failures)*100, '0.99%') AS errors
+       to_char(cast(failures AS decimal)/(success+failures)*100, '0.99%')
+       AS errors
 FROM
   (SELECT to_char(s.time, 'DD Mon YYYY') AS days,
           s.status,
@@ -95,7 +97,6 @@ FROM
    FROM log AS s
    GROUP BY days,
             s.status) AS s,
-
   (SELECT to_char(f.time, 'DD Mon YYYY') AS dayf,
           f.status,
           count(f.id) AS failures
@@ -109,32 +110,32 @@ WHERE days=dayf
 
 
 def answer1():
-   """Answer the first question ..."""
-    print("Question 1: What are the most popular three articles of all time?\n")
+    """Answer the first question ..."""
+    print("Question 1:What are the most popular three articles of all time?\n")
     c.execute(query_1)
     posts = c.fetchall()
     print("Titles and views:")
     # And let's loop over it too:
     for post in posts:
         print("  {}---------{} views".format(post[0], post[1]))
-     
+
 
 def answer2():
-   """Answer second question ..."""
-    print("Question 2: Who are the most popular article authors of all time?\n")
+    """Answer second question ..."""
+    print("Question 2:Who are the most popular article authors of all time?\n")
     c.execute(query_2)
     posts = c.fetchall()
     print("Author's name and views:")
     # And let's loop over it too:
     for post in posts:
         print("  {} --------- {} views".format(post[0], post[1]))
-   
+
 
 def answer3():
     """Answer the third first question ..."""
-    print("Question 3: On which days more than 1% of requests resulted in errors?\n")
+    print("Question 3:Which days had more than 1% of requests errors?\n")
     c.execute(query_3)
-    posts = c.fetchall()      
+    posts = c.fetchall()
     print("Date and status views:")
     print("     DATE       VIEWS   ERRORS          %ERRORS")
     for post in posts:
@@ -144,19 +145,19 @@ def answer3():
                   '{}\033[m'.format(post[0], post[1], post[2], post[3]))
         else:
             print(" {}     {}    {}-----------"
-                  "{}".format(post[0], post[1], post[2], post[3]))   
-        
-  
+                  "{}".format(post[0], post[1], post[2], post[3]))
+
+
 def answer3Plus():
     c.execute(query_3)
     posts = c.fetchall()
     print("\n****Day (s) with failure rate greater than 1%:")
     # And let's loop over it too:
     for post in posts:
-        print('\033[0;32;41m {}---------{} Erros \033[m'.format(post[0], post[3]))
+        print('\033[0;32;41m {}-----{} Erros \033[m'.format(post[0], post[3]))
 
-       
- def run():
+
+def run():
     """Running report ..."""
     print("Running reporting tools...\n")
     answer1()
@@ -167,8 +168,9 @@ def answer3Plus():
 
     answer3()
     print("\n")
-    
+
     answer3Plus()
     print("\n")
 
     db.close()
+
