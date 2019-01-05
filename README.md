@@ -27,8 +27,11 @@ Here's a link to download the complete enviroment https://github.com/udacity/ful
 This machine is part of _NanoDegree FullStack program_.
 Unzip or place the virtual machine folder in a directory of your computer.
 5. Step Five: Import the database.
-To import the Database to your enviroment you should first be able to login into your virtual machine
-using `vagrant up` command and them `vagrant ssh` command.
+To import the Database to your enviroment you should first be able to login into your virtual machine.
+You can find the link to download the database is right here:
+https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip
+After that, put the newsdata.sql into the news folder.
+On your Shell terminal, go to the news folder and type `vagrant up` command and them `vagrant ssh` command.
 If everthing is ok the output of your shell would seems like:
 `vagrant@vagrant:/vagrant/news$`
 Than run the following command on Shell `psql -d news -f newsdata.sql`.
