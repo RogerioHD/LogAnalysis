@@ -50,7 +50,7 @@ By the way the ***news*** folder is located inside the vagrant's folder. Here's 
          </details>
     </details>
     
-### Running the program
+### Running the python program
 After the initial set up you should be able to login into your virtual machine
 using `vagrant up` command and them `vagrant ssh` command.
 If everthing is ok the output of your shell would seems like:
@@ -58,6 +58,4 @@ If everthing is ok the output of your shell would seems like:
 Just wrtite `python newsdb.py` and you will get the reports!
 ### Accessing the Database
 To check for other queries of your interest, just certify that your are at `vagrant@vagrant:/vagrant/news$`
-and than run psql command.
-
-  
+and than run a psql command. Example: `SELECT slug from articles;` 
