@@ -15,10 +15,16 @@ Go to https://www.python.org/downloads/ and download Python.
 Follow the installation process.
 2. Step Two: Get / install VirtualBox.
 Here is recommended that you choose a virtual machine.
-To download a virtual machine go to https://www.virtualbox.org/ ans install VirtualBox
-One should notice that at first you need to have installed on your computer the VirtualBox and the Vagrant.
-After that you'll need to download the virtual machine FSND-Virtual-Machine
-provided by Udacity team on its _NanoDegree FullStack program_.
+To download a virtual machine go to https://www.virtualbox.org/ ans install VirtualBox.
+3. Step Three: Get / Install Vagrant.
+Vagrant let's you configure a customized development enviroment.
+Go to https://www.vagrantup.com/ and download the lastest version.
+4. Step Four: Get a virtual machine set up.
+You should have a virtual machine with Postgres intalled on it and the files related to the database.
+Here's a link to download the complete enviroment https://github.com/udacity/fullstack-nanodegree-vm.
+This machine is part of _NanoDegree FullStack program_.
+Unzip or place the virtual machine folder in a directory of your computer.
+
 ### Python File
 The python file **newsdb.py** is located inside a folder named ***news***.
 By the way the ***news*** folder is located inside the vagrant's folder. Here's the structure:
