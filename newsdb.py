@@ -17,17 +17,14 @@ def connect(database_name):
         db = psycopg2.connect("dbname={}".format(database_name))
         cursor = db.cursor()
         return db, cursor
-        """
-                db, cursor : is a tuple.
-                The first element (db) is a connection to the database.
-                The second element (cursor) is a cursor for the database.
-        """
+
     except psycopg2.Error as err:
-        print "Unable to connect to database"
-        print err
+        print ("Unable to connect to database")
+        print (err)
         sys.exit(1)      # The easier method - exit the program
 
 # FIRST QUESTION QUERY
+
 
 query_1 = """
 SELECT title,
@@ -48,7 +45,7 @@ query_2 = """
 SELECT authors.name,
        count(articles.id) AS num
 FROM log
-LEFT JOIN articles ON substring(PATH, 10, 88)=slug INNER "
+LEFT JOIN articles ON substring(PATH, 10, 88)=slug INNER
 JOIN authors ON authors.id=articles.author
 GROUP BY status,
          authors.name
@@ -112,8 +109,8 @@ WHERE days=dayf
 def answer1():
     """Answer the first question ..."""
     print("Question 1:What are the most popular three articles of all time?\n")
-    c.execute(query_1)
-    posts = c.fetchall()
+    cursor.execute(query_1)
+    posts = cursor.fetchall()
     print("Titles and views:")
     # And let's loop over it too:
     for post in posts:
@@ -123,8 +120,8 @@ def answer1():
 def answer2():
     """Answer second question ..."""
     print("Question 2:Who are the most popular article authors of all time?\n")
-    c.execute(query_2)
-    posts = c.fetchall()
+    cursor.execute(query_2)
+
     print("Author's name and views:")
     # And let's loop over it too:
     for post in posts:
@@ -134,8 +131,8 @@ def answer2():
 def answer3():
     """Answer the third first question ..."""
     print("Question 3:Which days had more than 1% of requests errors?\n")
-    c.execute(query_3)
-    posts = c.fetchall()
+    cursor.execute(query_3)
+    posts = cursor.fetchall()
     print("Date and status views:")
     print("     DATE       VIEWS   ERRORS          %ERRORS")
     for post in posts:
@@ -148,9 +145,9 @@ def answer3():
                   "{}".format(post[0], post[1], post[2], post[3]))
 
 
-def answer3Plus():
-    c.execute(query_3)
-    posts = c.fetchall()
+def answer3plus():
+    cursor.execute(query_3_plus)
+    posts = cursor.fetchall()
     print("\n****Day (s) with failure rate greater than 1%:")
     # And let's loop over it too:
     for post in posts:
@@ -169,8 +166,11 @@ def run():
     answer3()
     print("\n")
 
-    answer3Plus()
+    answer3plus()
     print("\n")
 
     db.close()
 
+
+db, cursor = connect(DBNAME)
+run()
