@@ -7,8 +7,9 @@ and how many views each article have gotten.
 ### The Database
 The database has 3 tables: authors, articles and log table.
 * The authors table contains the columns: id(integer), name(text) and bio(text).
-* The articles table has: id(integer), a foreign key author(integer), title(text), 
-slug(text), lead(text), body(text), time(timestamp)
+* The articles table has: id(integer), a foreign key author(integer) 
+refering to id of the table authors , title(text), slug(text), 
+lead(text), body(text), time(timestamp)
 * The log table includes the following columns: path(text), id(integer), 
 time(timestamp), status(text) wich could be '200 OK' ou '404 NOT FOUND' depending on
 the result of the HTTP request, ip(inet), method(text).
