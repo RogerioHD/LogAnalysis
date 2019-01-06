@@ -174,3 +174,4 @@ def run():
 
 db, cursor = connect(DBNAME)
 run()
+
